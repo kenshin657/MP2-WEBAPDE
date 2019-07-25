@@ -1,0 +1,19 @@
+body{
+    background-color: #829C4B;
+}
+
+.form{
+    position: absolute;
+    width: 691px;
+    height: 370px;
+    left: 25%;
+    top: 25%;
+
+    background: #DFD3D3;
+    border-radius: 36px;
+}
+
+#login{
+    text-align: center;
+    margin-top: 15%;
+}
