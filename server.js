@@ -16,7 +16,22 @@ app.get("/", (req, res)=> {
     res.sendFile(__dirname + "/login.html")
 })
 
+app.post("/login", urlencoder, (req, res)=>{
+    let username = req.body.un
+
+    let htmlCode = "Hello, " + username + "!<br>Work in Progress Build..."
+
+    res.send(htmlCode)
+})
+
+app.post("/register", urlencoder, (req, res)=>{
+    let username = req.body.un
+
+    let htmlCode = "Hello, " + username + "!<br>Work in Progress Build..."
+
+    res.send(htmlCode)
+})
 
 app.listen(3500, ()=> {
-    console.log("Webpage is Up!")
+    console.log("Webpage is Up at port 3500!")
 })
