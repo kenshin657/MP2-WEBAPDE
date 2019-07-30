@@ -32,6 +32,6 @@ app.post("/register", urlencoder, (req, res)=>{
     res.send(htmlCode)
 })
 
-app.listen(3500, ()=> {
+app.listen(process.env.PORT || 5000, ()=> {
     console.log("Webpage is Up at port 3500!")
 })
