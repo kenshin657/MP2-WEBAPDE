@@ -25,11 +25,23 @@ app.post("/login", urlencoder, (req, res)=>{
 })
 
 app.post("/register", urlencoder, (req, res)=>{
-    let username = req.body.un
-
-    let htmlCode = "Hello, " + username + "!<br>Work in Progress Build..."
-
-    res.send(htmlCode)
+    var username = req.body.un
+    var password = req.body.pw
+    
+    let user = new User({
+        username : username,
+        password: password
+    })
+    
+    user.save().then((doc)=>{
+        console.log(doc)
+        req.session.username = doc.username
+        res.render("main.hbs", {
+            username : doc.username
+        })
+    }, (err)=>{
+        res.send(err)
+    })
 })
 
 app.listen(process.env.PORT || 5000, ()=> {
