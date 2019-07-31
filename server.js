@@ -42,10 +42,25 @@ app.get("/", (req, res)=> {
 
 app.post("/login", urlencoder, (req, res)=>{
     let username = req.body.un
+    let password = req.body.pw
 
-    let htmlCode = "Hello, " + username + "!<br>Work in Progress Build..."
-
-    res.send(htmlCode)
+    User.findOne({username:username, password:password}, function(err, doc){
+        if(err){
+            console.log(err)
+        }
+        
+        if(doc){
+            console.log(doc.username + " in database!")
+            res.render("main.hbs", {
+                username: doc.username
+            })
+        }
+        else{
+            console.log("user not found")
+            res.render("nouser.hbs")
+        }
+    })
+    
 })
 
 app.post("/register", urlencoder, (req, res)=>{
