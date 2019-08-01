@@ -7,6 +7,12 @@ const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
 const url = require("url")
 
+const MongoClient = require('mongodb').MongoClient
+
+const connectionString = "mongodb+srv://test:NKVqUJMsIqxy9N9x@cluster0-r73sb.mongodb.net/test?retryWrites=true&w=majority"
+
+
+
 
 const bodyparser = require("body-parser")
 const urlencoder = bodyparser.urlencoded({
@@ -14,7 +20,7 @@ const urlencoder = bodyparser.urlencoded({
 })
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/sample_Db", {
+mongoose.connect(connectionString, {
     useNewUrlParser:true
 })
 
