@@ -22,6 +22,7 @@ app.use(cookieparser())
 
 app.use(express.static(__dirname+ "/public"))
 const User = require("./user.js").User
+const Task = require("./user.js").Task
 
 app.use(session({
     resave: true,
@@ -75,6 +76,21 @@ app.post("/register", urlencoder, (req, res)=>{
     user.save().then((doc)=>{
         console.log(doc)
         req.session.username = doc.username
+        
+        var task = new Task({
+            username: username,
+            taskName: "Getting Started P1",
+            taskDesc: "create your first task",
+            reward: 100,
+            isRepeating: false,
+        })
+        
+        task.save().then((doc)=>{
+            console.log(doc)
+        }, (err)=>{
+            res.send(err)
+        })
+        
         res.render("main.hbs", {
             username : doc.username
         })
