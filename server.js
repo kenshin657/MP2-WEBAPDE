@@ -11,9 +11,6 @@ const MongoClient = require('mongodb').MongoClient
 
 const connectionString = "mongodb+srv://test:NKVqUJMsIqxy9N9x@cluster0-r73sb.mongodb.net/test?retryWrites=true&w=majority"
 
-
-
-
 const bodyparser = require("body-parser")
 const urlencoder = bodyparser.urlencoded({
     extended:false
@@ -25,6 +22,7 @@ mongoose.connect(connectionString, {
 })
 
 app.use(cookieparser())
+
 
 app.use(express.static(__dirname+ "/public"))
 const User = require("./user.js").User

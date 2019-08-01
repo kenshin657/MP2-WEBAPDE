@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--<script src="login_script.js"></script>-->
     
 </head>
 <body>
@@ -23,6 +24,7 @@
             <div class="form-group">
                 <label for="form-groupPass">Password</label>
                 <input type="password" name="pw" id="form-groupPass" class="form-control" placeholder="Password">
+                <small id="loginHelp" class="form-text text-muted" style="color: red; font-weight: bold">Invalid Login Credentials</small>
             </div>
 
             <br>
@@ -65,7 +67,11 @@
   </div>
 
 
-
+  <script>
+      $(document).ready(function() {
+          $("#loginHelp").hide()
+      })
+  </script>
 
   <!--LOADING ANIMATION-->
   <div class="loader-wrapper">
