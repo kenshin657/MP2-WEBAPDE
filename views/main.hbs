@@ -19,34 +19,82 @@
         }
         
         #taskdiv{
+            
+            width: 450px;
+            height:40%;
             background-color: white;
+
+            padding: 15px;
+            border-radius: 2%;
+        }
+        
+        #taskdivider{
+            height: 10px;
+        }
+        
+        #taskdivrepeating{
+            
+            width: 450px;
+            height: 40%;
+            background-color: white;
+
+            padding: 15px;
+            border-radius: 5%;
         }
         
         #profilediv{
+            width: 450px;
+            height: 600px;
             background-color: white;
-            min-height: 600px;
+
+            padding: 15px;
+            border-radius: 5%;
+        }
+        
+        #leftcolumn{
+            float: left;
+            margin: 1%;
+            height: 98%;
+        }
+        
+        #midcolumn{
+            float: left;
+            margin: 1%;
+            height: 98%;
         }
     </style>
 </head>
 <body>
     
-    <div class="container">
+    <div id="leftcolumn">
         
-        <div class="well">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="profilediv">
+            <div id="profilediv">
                 <h3>Hello {{user}}!</h3>
 
                 <a href="logout">Logout</a><br>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="taskdiv">
-                <table>
-                    {{#each tasks}}
-                    <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                    {{/each}}
-                </table>
-            </div>
-        </div>
+            
         
+    </div>
+    <div id="midcolumn">
+        <div id="taskdiv">
+            <h2>Current Tasks</h2>
+            <table>
+                {{#each tasks}}
+                <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                {{/each}}
+            </table>
+        </div>
+        <div id="taskdivider">
+        </div>
+        <div id="taskdivrepeating">
+            <h2>Repeating Tasks</h2>
+            <table>
+                {{#each regtasks}}
+                <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                {{/each}}
+            </table>
+        </div>
     </div>
 </body>
 </html>

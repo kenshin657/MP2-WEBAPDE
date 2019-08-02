@@ -56,18 +56,36 @@ app.post("/login", urlencoder, (req, res)=>{
         
         if(doc){
             console.log(doc.username + " in database!")
+            var tasks
+            var regtasks
             
-            Task.find({username: username}, function(err, docs){
+            Task.find({username: username, isRepeating: false}, function(err, docs){
                 if(err){
                     res.send(err)
                 }
                 else{
-                    res.render("main.hbs", {
-                        user: doc.username,
-                        tasks: docs
+                    tasks = docs
+                    console.log(tasks)
+                    
+                    Task.find({username: username, isRepeating: true}, function(err, docs){
+                        if(err){
+                            res.send(err)
+                        }
+                        else{
+                           regtasks = docs
+                            console.log(regtasks)
+                            
+                            setTimeout(function(){
+                                res.render("main.hbs", {
+                                    user: doc.username,
+                                    tasks: tasks,
+                                    regtasks: regtasks
+                                })
+                            }, 500)
+                        }
                     })
                 }
-            })
+            })     
             
             /*res.render("main.hbs", {
                 username: doc.username
@@ -116,17 +134,7 @@ app.post("/register", urlencoder, (req, res)=>{
             task2.save().then((doc)=>{
                 console.log(doc)
                 
-                Task.find({username: username}, function(err, docs){
-                    if(err){
-                        res.send(err)
-                    }
-                    else{
-                        res.render("main.hbs", {
-                            user: doc.username,
-                            tasks: docs
-                        })
-                    }
-                })
+                res.redirect("/")
                 
             }, (err)=>{
                 res.send(err)
