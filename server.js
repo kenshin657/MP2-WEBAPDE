@@ -9,22 +9,43 @@ const url = require("url")
 
 const MongoClient = require('mongodb').MongoClient
 
-const connectionString = "mongodb+srv://test:NKVqUJMsIqxy9N9x@cluster0-r73sb.mongodb.net/test?retryWrites=true&w=majority"
+const crypto = require('crypto');
+const algorithm = 'aes-256-ctr';
+const password = 'd6F3Efeq';
 
+//const connectionString = "mongodb+srv://test:NKVqUJMsIqxy9N9x@cluster0-r73sb.mongodb.net/test?retryWrites=true&w=majority"
 
-
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/users",{
+    useNewUrlParser: true
+})
 
 const bodyparser = require("body-parser")
 const urlencoder = bodyparser.urlencoded({
     extended:false
 })
 
-mongoose.Promise = global.Promise
-mongoose.connect(connectionString, {
-    useNewUrlParser:true
-})
+//mongoose.Promise = global.Promise
+//mongoose.connect(connectionString, {
+//    useNewUrlParser:true
+//})
+
+function encrypt(text){
+  var cipher = crypto.createCipher(algorithm,password)
+  var crypted = cipher.update(text,'utf8','hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+ 
+function decrypt(text){
+  var decipher = crypto.createDecipher(algorithm,password)
+  var dec = decipher.update(text,'hex','utf8')
+  dec += decipher.final('utf8');
+  return dec;
+}
 
 app.use(cookieparser())
+
 
 app.use(express.static(__dirname+ "/public"))
 const User = require("./user.js").User
@@ -50,14 +71,16 @@ app.get("/", (req, res)=> {
 app.post("/login", urlencoder, (req, res)=>{
     let username = req.body.un
     let password = req.body.pw
-
-    User.findOne({username:username, password:password}, function(err, doc){
+    
+    //User.findOne({username:username, password:password}, function(err, doc){
+    User.findOne({username:username}, function(err, doc){
         if(err){
             console.log(err)
         }
-        
-        if(doc){
+        //doc
+        if(password == decrypt(doc.password)){
             console.log(doc.username + " in database!")
+            //console.log(doc.password)
             res.render("main.hbs", {
                 username: doc.username
             })
@@ -76,7 +99,7 @@ app.post("/register", urlencoder, (req, res)=>{
     
     let user = new User({
         username : username,
-        password: password
+        password: encrypt(password)
     })
     
     user.save().then((doc)=>{
