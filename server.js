@@ -52,9 +52,22 @@ app.post("/login", urlencoder, (req, res)=>{
         
         if(doc){
             console.log(doc.username + " in database!")
-            res.render("main.hbs", {
-                username: doc.username
+            
+            Task.find({username: username}, function(err, docs){
+                if(err){
+                    res.send(err)
+                }
+                else{
+                    res.render("main.hbs", {
+                        user: doc.username,
+                        tasks: docs
+                    })
+                }
             })
+            
+            /*res.render("main.hbs", {
+                username: doc.username
+            })*/
         }
         else{
             console.log("user not found")
@@ -77,7 +90,7 @@ app.post("/register", urlencoder, (req, res)=>{
         console.log(doc)
         req.session.username = doc.username
         
-        var task = new Task({
+        var task1 = new Task({
             username: username,
             taskName: "Getting Started P1",
             taskDesc: "create your first task",
@@ -85,15 +98,41 @@ app.post("/register", urlencoder, (req, res)=>{
             isRepeating: false,
         })
         
-        task.save().then((doc)=>{
+        task1.save().then((doc)=>{
             console.log(doc)
+            
+            var task2 = new Task({
+                username: username,
+                taskName: "Getting Started P2",
+                taskDesc: "explore the website",
+                reward: 100,
+                isRepeating: false,
+            })
+
+            task2.save().then((doc)=>{
+                console.log(doc)
+                
+                Task.find({username: username}, function(err, docs){
+                    if(err){
+                        res.send(err)
+                    }
+                    else{
+                        res.render("main.hbs", {
+                            user: doc.username,
+                            tasks: docs
+                        })
+                    }
+                })
+                
+            }, (err)=>{
+                res.send(err)
+            })
+            
         }, (err)=>{
             res.send(err)
         })
         
-        res.render("main.hbs", {
-            username : doc.username
-        })
+        
     }, (err)=>{
         res.send(err)
     })

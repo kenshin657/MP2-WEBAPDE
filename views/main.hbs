@@ -6,12 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PixQuest</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-image: url(https://images2.alphacoders.com/705/705837.png);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+             background-size: cover;
+        }
+        
+        #taskdiv{
+            background-color: white;
+        }
+        
+        #profilediv{
+            background-color: white;
+            min-height: 600px;
+        }
+    </style>
 </head>
 <body>
-
-    <h3>Hello {{username}}!</h3>
-
-    <a href="logout">Logout</a>
     
+    <div class="container">
+        
+        <div class="well">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="profilediv">
+                <h3>Hello {{user}}!</h3>
+
+                <a href="logout">Logout</a><br>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="taskdiv">
+                <table>
+                    {{#each tasks}}
+                    <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>
