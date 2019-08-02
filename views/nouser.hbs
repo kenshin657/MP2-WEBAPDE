@@ -5,13 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PixQuest</title>
+    <link rel="stylesheet" href="login_style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="login_script.js"></script>
+    
 </head>
 <body>
 
-    <h3>Incorrect Username or Password</h3>
+    <div class="all">
+        <form action="login" method="post">
+            <div class="form-group">
+                <label for="form-groupUsername">Username</label>
+                <input type="text" name="un" id="form-groupUsername" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="form-groupPass">Password</label>
+                <input type="password" name="pw" id="form-groupPass" class="form-control" placeholder="Password">
+                <small id="loginHelp" class="form-text text-muted" style="color: red; font-weight: bold">Invalid Login Credentials</small>
+            </div>
 
-    <a href="logout">Return</a>
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Register</button>
+        </form>
+    </div>
+
+    <!--MODAL CONTENT STUFF FOR REGISTER-->
+
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
     
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sign-Up</h4>
+        </div>
+        <div class="modal-body">
+            <form action="register" method="post">
+                <div class="form-group">
+                    <label for="form-groupUsername">Username</label>
+                    <input type="text" name="un" id="form-groupUsername" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="form-groupPass">Password</label>
+                    <input type="password" name="pw" id="form-groupPass" class="form-control" placeholder="Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                  </div>
+            </form>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+
+    <script>
+      $(document).ready(function() {
+          $("#loginHelp").show()
+      })
+  </script>
+
+        
 </body>
 </html>
