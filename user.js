@@ -2,7 +2,8 @@ const mongoose = require("mongoose")
 
 var userSchema = mongoose.Schema({
     username : String,
-    password : String
+    password : String,
+    credit: Number
 })
 
 var taskSchema = mongoose.Schema({

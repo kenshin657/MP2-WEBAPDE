@@ -9,41 +9,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <style>
+    <style type="text/css">
         body{
             background-image: url(https://images2.alphacoders.com/705/705837.png);
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
              background-size: cover;
+            margin: 0;
+            height: 100%;
         }
         
-        #taskdiv{
-            
-            width: 800px;
-            height:450px;
-            background-color: white;
-
-            padding: 15px;
-            border-radius: 2%;
+        #pagecontainer{
+            position: fixed;
+            width: 100%;
+            height: 100%;
         }
         
-        #taskdivider{
-            height: 10px;
-        }
-        
-        #taskdivrepeating{
-            
-            width: 800px;
-            height: 450px;
-            background-color: white;
-
-            padding: 15px;
-            border-radius: 5%;
+        #sidebar{
+            float: left;
+            margin: 1%;
+            height: 98%;
+            width: 28%;
         }
         
         #profilediv{
-            width: 450px;
+            width: 100%;
             height: 600px;
             background-color: white;
 
@@ -51,22 +42,28 @@
             border-radius: 5%;
         }
         
-        #leftcolumn{
+        #content{
             float: left;
-            margin: 1%;
-            height: 98%;
+            background-color: rgba(255,255,255,0.25);
+            height: 100%;
+            width: 70%;
         }
         
-        #midcolumn{
-            float: left;
-            margin: 1%;
-            height: 98%;
+        #taskdiv{
+            position: relative;
+            width: 420px;
+            height:420px;
+            background-color: white;
+
+            padding: 15px;
+            border-radius: 2%;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
-    
-    <div id="leftcolumn">
+    <div id="pagecontainer">
+        <div id="sidebar">
         
             <div id="profilediv">
                 <h3>Hello {{user}}!</h3>
@@ -75,26 +72,44 @@
             </div>
             
         
+        </div>
+        <div id="content" class="container">
+            <div class="row">
+                <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <h2>Current Tasks</h2>
+                    <table>
+                        {{#each tasks}}
+                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                        {{/each}}
+                    </table>
+                </div>
+                <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <h2>Daily Tasks</h2>
+                    <table>
+                        {{#each regtasks}}
+                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                        {{/each}}
+                    </table>
+                </div>
+                <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <h2>Weekly Tasks</h2>
+                    <table>
+                        {{#each regtasks}}
+                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                        {{/each}}
+                    </table>
+                </div>
+                <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <h2>Monthly Tasks</h2>
+                    <table>
+                        {{#each regtasks}}
+                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="midcolumn">
-        <div id="taskdiv">
-            <h2>Current Tasks</h2>
-            <table>
-                {{#each tasks}}
-                <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                {{/each}}
-            </table>
-        </div>
-        <div id="taskdivider">
-        </div>
-        <div id="taskdivrepeating">
-            <h2>Repeating Tasks</h2>
-            <table>
-                {{#each regtasks}}
-                <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                {{/each}}
-            </table>
-        </div>
-    </div>
+     
 </body>
 </html>
