@@ -47,6 +47,7 @@
             background-color: rgba(255,255,255,0.25);
             height: 100%;
             width: 70%;
+            overflow: auto;
         }
         
         #taskdiv{
@@ -58,6 +59,33 @@
             padding: 15px;
             border-radius: 2%;
             margin: 10px;
+            overflow: auto;
+        }
+        #taskcontainer{
+            width: 380px;
+            min-height: 58px;
+            border-radius: 2%;
+            background-color: rgba(222,222,222,1);
+            margin: 10px;
+            font-size: 20px;
+        }
+        #taskcontainer:hover{
+            background-color: rgba(235,235,235,1);
+        }
+        #taskname{
+            float: left;
+            width: 80%;
+            height: 100%;
+            margin: 0;
+            padding: 15px;
+        }
+        #reward{
+            float: left;
+            width: 20%;
+            height: 100%;
+            margin: 0;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -77,35 +105,49 @@
             <div class="row">
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Current Tasks</h2>
-                    <table>
-                        {{#each tasks}}
-                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                        {{/each}}
-                    </table>
+                    {{#each tasks}}
+                    <div id="taskcontainer">
+                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="reward">{{reward}}</div>
+                        <div id="{{_id}}Content" class="collapse">{{taskDesc}}</div>
+                    </div>
+                    {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Daily Tasks</h2>
-                    <table>
-                        {{#each regtasks}}
-                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                        {{/each}}
-                    </table>
+                    {{#each regtasks}}
+                    <div id="taskcontainer">
+                        <div id="taskname">{{taskName}}</div>
+                        <div id="reward">{{reward}}</div>
+                    </div>
+                    {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Weekly Tasks</h2>
-                    <table>
-                        {{#each regtasks}}
-                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                        {{/each}}
-                    </table>
+                    {{#each regtasks}}
+                    <div id="taskcontainer">
+                        <div id="taskname">{{taskName}}</div>
+                        <div id="reward">{{reward}}</div>
+                    </div>
+                    {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Monthly Tasks</h2>
-                    <table>
-                        {{#each regtasks}}
-                        <tr>{{taskName}} {{taskDesc}} {{reward}}</tr><br>
-                        {{/each}}
-                    </table>
+                    {{#each regtasks}}
+                    <div id="taskcontainer">
+                        <div id="taskname">{{taskName}}</div>
+                        <div id="reward">{{reward}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <h2>Finished Tasks</h2>
+                    {{#each regtasks}}
+                    <div id="taskcontainer">
+                        <div id="taskname">{{taskName}}</div>
+                        <div id="reward">{{reward}}</div>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

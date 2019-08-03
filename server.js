@@ -117,7 +117,8 @@ app.post("/register", urlencoder, (req, res)=>{
             taskName: "Getting Started P1",
             taskDesc: "create your first task",
             reward: 100,
-            isRepeating: false,
+            frequency: 0,
+            isCompleted: false,
         })
         
         task1.save().then((doc)=>{
@@ -128,7 +129,8 @@ app.post("/register", urlencoder, (req, res)=>{
                 taskName: "Getting Started P2",
                 taskDesc: "explore the website",
                 reward: 100,
-                isRepeating: false,
+                frequency: 0,
+                isCompleted: false,
             })
 
             task2.save().then((doc)=>{
