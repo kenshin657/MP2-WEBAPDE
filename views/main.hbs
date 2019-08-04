@@ -140,9 +140,13 @@
                 <div id="avatar">
                     
                 </div>
-
-                <h3>Hello {{user}}!</h3>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Shop</button> <br>
+                <div id="{{user}}">
+                    <h3>Hello {{user}}!</h3>
+                </div>
+                
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Shop</button> <br><br>
+                
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#taskModal">Add New Task</button> <br><br>
 
 
                 <a href="logout">Logout</a><br>
@@ -171,37 +175,69 @@
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Daily Tasks</h2>
-                    {{#each regtasks}}
-                    <div id="taskcontainer">
-                        <div id="taskname">{{taskName}}</div>
+                    {{#each daytasks}}
+                    <div id="taskcontainer" data-id="{{_id}}">
+                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
+                        <div id="{{_id}}Content" class="collapse">
+                            {{taskDesc}}
+                            <div>
+                                <button class="finish" data-id="{{_id}}">Finish</button>
+                                <button class="edit" data-id="{{_id}}">Edit</button>
+                                <button class="delete" data-id="{{_id}}">Delete</button>
+                            </div>
+                        </div>
                     </div>
                     {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Weekly Tasks</h2>
-                    {{#each regtasks}}
-                    <div id="taskcontainer">
-                        <div id="taskname">{{taskName}}</div>
+                    {{#each weektasks}}
+                    <div id="taskcontainer" data-id="{{_id}}">
+                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
+                        <div id="{{_id}}Content" class="collapse">
+                            {{taskDesc}}
+                            <div>
+                                <button class="finish" data-id="{{_id}}">Finish</button>
+                                <button class="edit" data-id="{{_id}}">Edit</button>
+                                <button class="delete" data-id="{{_id}}">Delete</button>
+                            </div>
+                        </div>
                     </div>
                     {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Monthly Tasks</h2>
-                    {{#each regtasks}}
-                    <div id="taskcontainer">
-                        <div id="taskname">{{taskName}}</div>
+                    {{#each monthtasks}}
+                    <div id="taskcontainer" data-id="{{_id}}">
+                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
+                        <div id="{{_id}}Content" class="collapse">
+                            {{taskDesc}}
+                            <div>
+                                <button class="finish" data-id="{{_id}}">Finish</button>
+                                <button class="edit" data-id="{{_id}}">Edit</button>
+                                <button class="delete" data-id="{{_id}}">Delete</button>
+                            </div>
+                        </div>
                     </div>
                     {{/each}}
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Finished Tasks</h2>
-                    {{#each regtasks}}
-                    <div id="taskcontainer">
-                        <div id="taskname">{{taskName}}</div>
+                    {{#each finishedtasks}}
+                    <div id="taskcontainer" data-id="{{_id}}">
+                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
+                        <div id="{{_id}}Content" class="collapse">
+                            {{taskDesc}}
+                            <div>
+                                <button class="finish" data-id="{{_id}}">Finish</button>
+                                <button class="edit" data-id="{{_id}}">Edit</button>
+                                <button class="delete" data-id="{{_id}}">Delete</button>
+                            </div>
+                        </div>
                     </div>
                     {{/each}}
                 </div>
@@ -270,5 +306,46 @@
                     </div>
                 </div>
      
+    <!--TASK MODAL-->
+    <div class="modal fade" id="taskModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">New Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="newtask" method="post">
+                        <div class="form-group">
+                            <label for="form-groupName">Task Name</label>
+                            <input type="text" name="taskname" id="form-groupName" class="form-control" placeholder="Task Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupDesc">Task Description</label>
+                            <input type="text" name="taskdesc" id="form-groupDesc" class="form-control" placeholder="Task Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupReward">Reward</label>
+                            <input type="number" min="0" max="1000" name="taskreward" id="form-groupReward" class="form-control" placeholder="Reward">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupFreq">Frequency</label>
+                            <select name="taskfreq" id="form-groupFreq" class="form-control">
+                                <option value="0">One Time</option>
+                                <option value="1">Daily</option>
+                                <option value="2">Weekly</option>
+                                <option value="3">Monthly</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="taskuser" value="{{user}}">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" id="newtasksubmitbutton">Submit</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+        </div>
+        
+    </div>
 </body>
 </html>

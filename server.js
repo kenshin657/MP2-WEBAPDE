@@ -57,36 +57,71 @@ app.post("/login", urlencoder, (req, res)=>{
         if(doc){
             console.log(doc.username + " in database!")
             var tasks
-            var regtasks
+            var daytasks
+            var weektasks
+            var monthtasks
+            var finishedtasks
             
-            Task.find({username: username, isRepeating: false}, function(err, docs){
+            Task.find({username: username, frequency: 0, isCompleted:false}, function(err, docs){
                 if(err){
                     res.send(err)
                 }
                 else{
                     tasks = docs
-                    console.log(tasks)
-                    
-                    Task.find({username: username, isRepeating: true}, function(err, docs){
-                        if(err){
-                            res.send(err)
-                        }
-                        else{
-                           regtasks = docs
-                            console.log(regtasks)
-                            
-                            setTimeout(function(){
-                                res.render("main.hbs", {
-                                    user: doc.username,
-                                    tasks: tasks,
-                                    regtasks: regtasks
-                                })
-                            }, 500)
-                        }
-                    })
+                    console.log("single" + tasks)
                 }
             })     
             
+            Task.find({username: username, frequency: 1}, function(err, docs){
+                if(err){
+                    res.send(err)
+                }
+                 else{
+                   daytasks = docs
+                    console.log("daily" + daytasks)
+                }
+            })
+            
+            Task.find({username: username, frequency: 2}, function(err, docs){
+                if(err){
+                    res.send(err)
+                }
+                 else{
+                   weektasks = docs
+                    console.log("weekly" + weektasks)
+                }
+            })
+            
+            Task.find({username: username, frequency: 3}, function(err, docs){
+                if(err){
+                    res.send(err)
+                }
+                 else{
+                   monthtasks = docs
+                    console.log("monthly" + monthtasks)
+                }
+            })
+            
+            Task.find({username: username, frequency: 0, isCompleted:true}, function(err, docs){
+                if(err){
+                    res.send(err)
+                }
+                 else{
+                   finishedtasks = docs
+                    console.log("finished" + finishedtasks)
+                }
+            })
+            
+            setTimeout(function(){
+                res.render("main.hbs", {
+                    user: doc.username,
+                    tasks: tasks,
+                    daytasks: daytasks,
+                    weektasks: weektasks,
+                    monthtasks: monthtasks,
+                    finishedtasks: finishedtasks
+                })
+            }, 1000)
             /*res.render("main.hbs", {
                 username: doc.username
             })*/
@@ -168,6 +203,30 @@ app.post("/delete",urlencoder, (req,res)=>{
         else{
             res.send(doc)
         }
+    })
+})
+
+app.post("/newtask", urlencoder, (req,res)=>{
+    var username = req.body.taskuser
+    var taskName = req.body.taskname
+    var taskDesc = req.body.taskdesc
+    var reward = req.body.taskreward
+    var frequency = req.body.taskfreq
+    
+    var task = new Task({
+        username: username,
+        taskName: taskName,
+        taskDesc: taskDesc,
+        reward: reward,
+        frequency: frequency,
+        isCompleted: false,
+    })
+
+    task.save().then((doc)=>{
+        console.log(doc)
+        
+    }, (err)=>{
+        res.send(err)
     })
 })
 
