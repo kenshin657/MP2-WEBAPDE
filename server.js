@@ -105,7 +105,8 @@ app.post("/register", urlencoder, (req, res)=>{
     
     let user = new User({
         username : username,
-        password: password
+        password: password,
+        credit: 0
     })
     
     user.save().then((doc)=>{
