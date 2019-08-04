@@ -115,6 +115,7 @@ app.post("/login", urlencoder, (req, res)=>{
             setTimeout(function(){
                 res.render("main.hbs", {
                     user: doc.username,
+                    credit: doc.credit,
                     tasks: tasks,
                     daytasks: daytasks,
                     weektasks: weektasks,
@@ -207,7 +208,8 @@ app.post("/delete",urlencoder, (req,res)=>{
 })
 
 app.post("/newtask", urlencoder, (req,res)=>{
-    var username = req.body.taskuser
+    var username = req.body.un
+    var credit = req.body.credit
     var taskName = req.body.taskname
     var taskDesc = req.body.taskdesc
     var reward = req.body.taskreward
@@ -288,6 +290,7 @@ app.post("/newtask", urlencoder, (req,res)=>{
     setTimeout(function(){
         res.render("main.hbs", {
             user: username,
+            credit: credit,
             tasks: tasks,
             daytasks: daytasks,
             weektasks: weektasks,

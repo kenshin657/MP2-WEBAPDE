@@ -60,7 +60,8 @@
             padding: 15px;
             border-radius: 2%;
             margin: 10px;
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         #taskcontainer{
             width: 380px;
@@ -140,9 +141,8 @@
                 <div id="avatar">
                     
                 </div>
-                <div id="{{user}}">
                     <h3>Hello {{user}}!</h3>
-                </div>
+                    <div>Credit: {{credit}}</div>
                 
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Shop</button> <br><br>
                 
@@ -233,8 +233,6 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}">Finish</button>
-                                <button class="edit" data-id="{{_id}}">Edit</button>
                                 <button class="delete" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
@@ -337,7 +335,8 @@
                                 <option value="3">Monthly</option>
                             </select>
                         </div>
-                        <input type="hidden" name="taskuser" value="{{user}}">
+                        <input type="hidden" name="un" value="{{user}}">
+                        <input type="hidden" name="credit" value="{{credit}}">
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary btn-sm" id="newtasksubmitbutton">Submit</button>
                         </div>
