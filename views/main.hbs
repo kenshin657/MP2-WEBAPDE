@@ -96,6 +96,34 @@
             display: inline-block;
         }
     </style>
+    <script>
+        $(document).ready(()=>{
+            
+            $("button.delete").click(function(){
+                var confirm = window.confirm("Delete this task?")
+                if(confirm){
+                    var taskid = $(this).attr("data-id")
+                    $.ajax({
+                        url: "delete",
+                        method: "post",
+                        data: {
+                            id: taskid
+                        },
+                        success: function(result){
+                            console.log(result)
+                            if(result.ok==1){
+                                $("div[data-id='"+taskid+"']").remove()
+                            }
+                            else{
+                                alert("something went wrong")
+                            }
+                        }
+                    })
+                }
+            })
+            
+        })
+    </script>
 </head>
 <body>
 
@@ -127,7 +155,7 @@
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Current Tasks</h2>
                     {{#each tasks}}
-                    <div id="taskcontainer">
+                    <div id="taskcontainer" data-id="{{_id}}">
                         <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">
@@ -180,6 +208,14 @@
             </div>
         </div>
     </div>
+    
+    <!--HIDDEN FORMS-->
+    <form action="edit" method="get" id="edit">
+        <input type="hidden" id="editid" name="id">
+    </form>
+    <form action="delete" method="get" id="delete">
+        <input type="hidden" id="deleteid" name="id">
+    </form>
 
     <!--SHOP MODAL PART-->
 

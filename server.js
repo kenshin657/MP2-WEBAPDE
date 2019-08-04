@@ -153,6 +153,24 @@ app.post("/register", urlencoder, (req, res)=>{
     })
 })
 
+app.post("/delete",urlencoder, (req,res)=>{
+    console.log("deleting task")
+    let id = req.body.id
+    
+    Task.deleteOne({
+        _id: id
+    }, (err,doc)=>{
+        if(err){
+            res.render("main.hbs", {
+                err
+            })
+        }
+        else{
+            res.send(doc)
+        }
+    })
+})
+
 app.get("/logout", (req,res)=>{
     req.session.destroy((err)=>{
         console.log("Error in Logging Out")
