@@ -228,6 +228,73 @@ app.post("/newtask", urlencoder, (req,res)=>{
     }, (err)=>{
         res.send(err)
     })
+    
+    var tasks
+    var daytasks
+    var weektasks
+    var monthtasks
+    var finishedtasks
+    
+    Task.find({username: username, frequency: 0, isCompleted:false}, function(err, docs){
+        if(err){
+            res.send(err)
+        }
+        else{
+            tasks = docs
+            console.log("single" + tasks)
+        }
+    })
+    
+    Task.find({username: username, frequency: 1}, function(err, docs){
+        if(err){
+            res.send(err)
+        }
+         else{
+            daytasks = docs
+            console.log("daily" + daytasks)
+        }
+    })
+            
+    Task.find({username: username, frequency: 2}, function(err, docs){
+        if(err){
+            res.send(err)
+        }
+        else{
+            weektasks = docs
+            console.log("weekly" + weektasks)
+        }
+    })
+            
+    Task.find({username: username, frequency: 3}, function(err, docs){
+        if(err){
+            res.send(err)
+        }
+        else{
+            monthtasks = docs
+            console.log("monthly" + monthtasks)
+        }
+    })
+            
+    Task.find({username: username, frequency: 0, isCompleted:true}, function(err, docs){
+        if(err){
+            res.send(err)
+        }
+        else{
+            finishedtasks = docs
+            console.log("finished" + finishedtasks)
+        }
+    })
+            
+    setTimeout(function(){
+        res.render("main.hbs", {
+            user: username,
+            tasks: tasks,
+            daytasks: daytasks,
+            weektasks: weektasks,
+            monthtasks: monthtasks,
+            finishedtasks: finishedtasks
+        })
+    }, 1000)
 })
 
 app.get("/logout", (req,res)=>{
