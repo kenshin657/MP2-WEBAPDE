@@ -207,7 +207,7 @@ app.post("/purchase", urlencoder, (req, res)=>{
             console.log(err)
         }
         
-        if(doc && password == decrypt(doc.password)){
+        if(doc){
             console.log(doc.username + " in database!")
             
             renderTasks(doc.username, doc.credit, image,res)
