@@ -111,8 +111,8 @@ app.post("/register", urlencoder, (req, res)=>{
             isCompleted: false,
         })
         
-        task1.save().then((doc)=>{
-            console.log(doc)
+        task1.save().then((doc2)=>{
+            console.log(doc2)
             
             var task2 = new Task({
                 username: username,
@@ -123,8 +123,8 @@ app.post("/register", urlencoder, (req, res)=>{
                 isCompleted: false,
             })
 
-            task2.save().then((doc)=>{
-                console.log(doc)
+            task2.save().then((doc3)=>{
+                console.log(doc3)
 
                 renderTasks(doc.username, doc.credit, res)
                 
@@ -192,7 +192,34 @@ app.post("/edittask", urlencoder, (req,res)=>{
     
 })
 
-app.post("/finishtask", urlencoder, (req,res)=>{
+app.post("/finish", urlencoder, (req,res)=>{
+    console.log("completing task")
+    let id = req.body.id
+    let username = req.body.un
+    let credit = req.body.credit
+    let reward =req.body.reward
+    
+    Task.updateOne({_id : id}, {isCompleted : true}, (err,doc)=>{
+        if(err){
+            
+        }
+        else{
+            console.log("successfully completed")
+            console.log("reward: " + reward)
+            credit = Number(credit) + Number(reward);
+            
+            User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+                if(err){
+
+                }
+                else{
+                    console.log("successfully rewarded")
+                    console.log(doc)
+                    renderTasks(username, credit, res)
+                }
+            })
+        }
+    })
     
 })
 
@@ -266,6 +293,8 @@ function renderTasks(username, credit, res){
         })
 
         setTimeout(function(){
+            console.log("rendering page")
+            console.log("User: " + username + " Credit: " + credit)
             res.render("main.hbs", {
                 user: username,
                 credit: credit,
@@ -276,5 +305,5 @@ function renderTasks(username, credit, res){
                 finishedtasks: finishedtasks
             })
         }, 1000)
-    },500)
+    },1000)
 }

@@ -122,6 +122,14 @@
                 }
             })
             
+            $("button.finish").click(function(){
+                var confirm = window.confirm("Finish this task?")
+                if(confirm){
+                    $("#finishid").val($(this).attr("data-id"))
+                    $("#finishreward").val($(this).attr("data-reward"))
+                    $("form#finish").submit()
+                }
+            })
         })
     </script>
 </head>
@@ -164,7 +172,7 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}">Finish</button>
+                                <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
                                 <button class="edit" href="#{{id}}edit" data-toggle="collapse">Edit</button>
                                 <div id="{{id}}edit" class="collapse">
                                     <form>
@@ -257,12 +265,13 @@
     </div>
     
     <!--HIDDEN FORMS-->
-    <form action="edit" method="get" id="edit">
-        <input type="hidden" id="editid" name="id">
+    <form action="finish" method="post" id="finish">
+        <input type="hidden" id="finishid" name="id">
+        <input type="hidden" id="finishreward" name="reward">
+        <input type="hidden" value="{{user}}" name="un">
+        <input type="hidden" value="{{credit}}" name="credit">
     </form>
-    <form action="delete" method="get" id="delete">
-        <input type="hidden" id="deleteid" name="id">
-    </form>
+    
 
     <!--SHOP MODAL PART-->
 
