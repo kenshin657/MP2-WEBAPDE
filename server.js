@@ -228,23 +228,20 @@ app.post("/finish", urlencoder, (req,res)=>{
 app.post("/purchase", urlencoder, (req, res)=>{
     let username = req.body.un
     let image = req.body.s1
+    let credit = req.body.credit
 
-    User.findOne({username:username}, function(err, doc){
-        if(err){
-            console.log(err)
-        }
-        
-        if(doc){
-            console.log(doc.username + " in database!")
-            
-            renderTasks(doc.username, doc.credit, image,res)
-            /*res.render("main.hbs", {
-                username: doc.username
-            })*/
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
         }
         else{
-            console.log("user not found")
-            res.render("nouser.hbs")
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    }).exec((err, result)=> {
+        if(err) {
+            throw err
         }
     })
     
