@@ -138,7 +138,7 @@
         
             <div id="profilediv">
                 <div id="avatar">
-                    <img src="/base_avatar.png" alt="">
+                    <img src= "{{image}}">
                 </div>
                     <h3>Hello {{user}}!</h3>
                     <div>Credit: {{credit}}</div>
@@ -249,6 +249,9 @@
     <form action="delete" method="get" id="delete">
         <input type="hidden" id="deleteid" name="id">
     </form>
+    <form action="purchase" method="get" id="purchase">
+        <input type="hidden" id="purchaseItem" name="id">
+    </form>
 
     <!--SHOP MODAL PART-->
 
@@ -267,7 +270,7 @@
                             <div class="inside-body">
                                 <form action="post" class="shop items">
                                     <figure>
-                                    <button type="submit">
+                                    <button class="purchase" data-id="{{_id}}">
                                         <img src="/shop_item1.png" alt="">
                                     </button>
                                     <figcaption>Cost: 100</figcaption>

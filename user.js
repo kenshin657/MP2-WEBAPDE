@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 var userSchema = mongoose.Schema({
     username : String,
     password : String,
-    credit: Number
+    credit: Number,
+    image : String
 })
 
 var taskSchema = mongoose.Schema({
