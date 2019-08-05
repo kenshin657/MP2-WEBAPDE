@@ -231,6 +231,29 @@ app.post("/purchase", urlencoder, (req, res)=>{
     let image = req.body.s1
     let credit = req.body.credit
 
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+    
+    
+})
+
+app.post("/purchase1", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.s1
+    let credit = req.body.credit
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
     User.updateOne({username: username}, {image: image}, (err, doc)=>{
         if(err) {
 
