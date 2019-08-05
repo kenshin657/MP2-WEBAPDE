@@ -185,7 +185,7 @@ app.post("/newtask", urlencoder, (req,res)=>{
         res.send(err)
     })
     
-    renderTasks(username, credit, res)
+    renderTasks(username, credit, image,res)
     
 })
 
@@ -207,7 +207,7 @@ app.post("/purchase", urlencoder, (req, res)=> {
 
         }
         else{
-            
+            image: "/shop_item1.png"
         }
     })
 })
