@@ -75,7 +75,7 @@ app.post("/login", urlencoder, (req, res)=>{
         if(doc && password == decrypt(doc.password)){
             console.log(doc.username + " in database!")
             
-            renderTasks(doc.username, doc.credit, res)
+            renderTasks(doc.username, doc.credit, doc.image,res)
             /*res.render("main.hbs", {
                 username: doc.username
             })*/
@@ -95,7 +95,8 @@ app.post("/register", urlencoder, (req, res)=>{
     let user = new User({
         username : username,
         password: encrypt(password),
-        credit: 0
+        credit: 0,
+        image: "/base_avatar.png"
     })
     
     user.save().then((doc)=>{
@@ -126,7 +127,7 @@ app.post("/register", urlencoder, (req, res)=>{
             task2.save().then((doc3)=>{
                 console.log(doc3)
 
-                renderTasks(doc.username, doc.credit, res)
+                renderTasks(doc.username, doc.credit, doc.image,res)
                 
             }, (err)=>{
                 res.send(err)
@@ -184,7 +185,7 @@ app.post("/newtask", urlencoder, (req,res)=>{
         res.send(err)
     })
     
-    renderTasks(username, credit, res)
+    renderTasks(username, credit, image,res)
     
 })
 
@@ -223,6 +224,21 @@ app.post("/finish", urlencoder, (req,res)=>{
     
 })
 
+app.post("/purchase", urlencoder, (req, res)=> {
+    let id = req.body.id
+
+    User.updateOne({
+        _id : id
+    }, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            image: "/shop_item1.png"
+        }
+    })
+})
+
 app.get("/logout", (req,res)=>{
     req.session.destroy((err)=>{
         console.log("Error in Logging Out")
@@ -234,7 +250,7 @@ app.listen(process.env.PORT || 5000, ()=> {
     console.log("Webpage is Up at port 5000!")
 })
 
-function renderTasks(username, credit, res){
+function renderTasks(username, credit, image, res){
     var tasks
     var daytasks
     var weektasks
@@ -299,6 +315,7 @@ function renderTasks(username, credit, res){
                 user: username,
                 credit: credit,
                 tasks: tasks,
+                image: image,
                 daytasks: daytasks,
                 weektasks: weektasks,
                 monthtasks: monthtasks,
