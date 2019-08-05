@@ -197,6 +197,21 @@ app.post("/finishtask", urlencoder, (req,res)=>{
     
 })
 
+app.post("/purchase", urlencoder, (req, res)=> {
+    let id = req.body.id
+
+    User.updateOne({
+        _id : id
+    }, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            
+        }
+    })
+})
+
 app.get("/logout", (req,res)=>{
     req.session.destroy((err)=>{
         console.log("Error in Logging Out")
