@@ -95,7 +95,7 @@ app.post("/register", urlencoder, (req, res)=>{
     let user = new User({
         username : username,
         password: encrypt(password),
-        credit: 0,
+        credit: 50,
         image: "/base_avatar.png"
     })
     
@@ -168,6 +168,7 @@ app.post("/newtask", urlencoder, (req,res)=>{
     var taskDesc = req.body.taskdesc
     var reward = req.body.taskreward
     var frequency = req.body.taskfreq
+    var image = req.body.img
     
     var task = new Task({
         username: username,
@@ -224,19 +225,30 @@ app.post("/finish", urlencoder, (req,res)=>{
     
 })
 
-app.post("/purchase", urlencoder, (req, res)=> {
-    let id = req.body.id
+app.post("/purchase", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.s1
 
-    User.updateOne({
-        _id : id
-    }, (err, doc)=>{
-        if(err) {
-
+    User.findOne({username:username}, function(err, doc){
+        if(err){
+            console.log(err)
+        }
+        
+        if(doc){
+            console.log(doc.username + " in database!")
+            
+            renderTasks(doc.username, doc.credit, image,res)
+            /*res.render("main.hbs", {
+                username: doc.username
+            })*/
         }
         else{
-            image: "/shop_item1.png"
+            console.log("user not found")
+            res.render("nouser.hbs")
         }
     })
+    
+    
 })
 
 app.get("/logout", (req,res)=>{
