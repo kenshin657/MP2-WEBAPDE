@@ -239,10 +239,6 @@ app.post("/purchase", urlencoder, (req, res)=>{
             console.log(doc)
             renderTasks(username, credit, image, res)
         }
-    }).exec((err, result)=> {
-        if(err) {
-            throw err
-        }
     })
     
     
