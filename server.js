@@ -191,7 +191,30 @@ app.post("/newtask", urlencoder, (req,res)=>{
 })
 
 app.post("/edittask", urlencoder, (req,res)=>{
+    console.log("editing task")
+    var id = req.body.editid
+    var username = req.body.un
+    var credit = req.body.credit
+    var taskName = req.body.taskname
+    var taskDesc = req.body.taskdesc
+    var reward = req.body.taskreward
+    var frequency = req.body.taskfreq
+    var image = req.body.img
     
+    Task.updateOne({_id : id}, {
+        taskName: taskName,
+        taskDesc: taskDesc,
+        reward: reward,
+        frequency: frequency
+    }, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully edited")
+            renderTasks(username, credit, image, res)
+        }
+    })
 })
 
 app.post("/finish", urlencoder, (req,res)=>{

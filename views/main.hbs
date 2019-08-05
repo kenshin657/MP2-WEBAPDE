@@ -99,6 +99,8 @@
     <script>
         $(document).ready(()=>{
             
+            var selectedtaskid
+            
             $("button.delete").click(function(){
                 var confirm = window.confirm("Delete this task?")
                 if(confirm){
@@ -129,6 +131,15 @@
                     $("#finishreward").val($(this).attr("data-reward"))
                     $("form#finish").submit()
                 }
+            })
+            
+            $("button.edit").click(function(){
+                selectedtaskid = $(this).attr("data-id")
+            })
+            
+            $("#edittasksubmitbutton").click(function(){
+                $("#editid").val(selectedtaskid)
+                $("form#edit").submit()
             })
         })
     </script>
@@ -175,21 +186,7 @@
                             {{taskDesc}}
                             <div>
                                 <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit" href="#{{id}}edit" data-toggle="collapse">Edit</button>
-                                <div id="{{id}}edit" class="collapse">
-                                    <form>
-                                        <input type="text"><br>
-                                        <input type="text"><br>
-                                        <input type="number" min="0" max="1000"><br>
-                                        <select>
-                                            <option value="0">One Time</option>
-                                            <option value="1">Daily</option>
-                                            <option value="2">Weekly</option>
-                                            <option value="3">Monthly</option>
-                                        </select><br>
-                                        <input type="submit"><br><br>
-                                    </form>
-                                </div>
+                                <button class="edit" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
                                 <button class="delete" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
@@ -234,7 +231,7 @@
                     <h2>Monthly Tasks</h2>
                     {{#each monthtasks}}
                     <div id="taskcontainer" data-id="{{_id}}">
-                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskname"><a href="#editmodal" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
@@ -352,6 +349,51 @@
                         <input type="hidden" name="img" value="{{image}}">
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary btn-sm" id="newtasksubmitbutton">Submit</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+        </div>
+        
+    </div>
+    
+    <!--EDIT MODAL-->
+    <div class="modal fade" id="editModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Edit Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="edittask" method="post" id="edit">
+                        <div class="form-group">
+                            <label for="form-groupName">Task Name</label>
+                            <input type="text" name="taskname" id="form-groupName" class="form-control" placeholder="Task Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupDesc">Task Description</label>
+                            <input type="text" name="taskdesc" id="form-groupDesc" class="form-control" placeholder="Task Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupReward">Reward</label>
+                            <input type="number" min="0" max="1000" name="taskreward" id="form-groupReward" class="form-control" placeholder="Reward">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-groupFreq">Frequency</label>
+                            <select name="taskfreq" id="form-groupFreq" class="form-control">
+                                <option value="0">One Time</option>
+                                <option value="1">Daily</option>
+                                <option value="2">Weekly</option>
+                                <option value="3">Monthly</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="un" value="{{user}}">
+                        <input type="hidden" name="credit" value="{{credit}}">
+                        <input type="hidden" name="img" value="{{image}}">
+                        <input type="hidden" name="editid" id="editid">
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-sm" id="edittasksubmitbutton">Submit</button>
                         </div>
                     </form>
                 </div>
