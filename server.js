@@ -23,10 +23,28 @@ mongoose.connect(connectionString, {
 
 app.use(cookieparser())
 
+const crypto = require('crypto')
+const algorithim = 'aes-256-ctr'
+const password = 'd6UwUEfeqpopo42069'
+
 
 app.use(express.static(__dirname+ "/public"))
 const User = require("./user.js").User
 const Task = require("./user.js").Task
+
+function encrypt(text) {
+    var cypher = crypto.createCipher(algorithim, password)
+    var encrypted = cypher.update(text, 'utf8', 'hex')
+    encrypted += cypher.final('hex')
+    return encrypted
+}
+
+function decrypt(text) {
+    var decypher = crypto.createDecipher(algorithim, password)
+    var dec = decypher.update(text, 'hex', 'utf8')
+    dec += decypher.final('utf8')
+    return dec
+}
 
 app.use(session({
     resave: true,
@@ -49,12 +67,12 @@ app.post("/login", urlencoder, (req, res)=>{
     let username = req.body.un
     let password = req.body.pw
 
-    User.findOne({username:username, password:password}, function(err, doc){
+    User.findOne({username:username}, function(err, doc){
         if(err){
             console.log(err)
         }
         
-        if(doc){
+        if(doc && password == decrypt(doc.password)){
             console.log(doc.username + " in database!")
             var tasks
             var daytasks
@@ -141,7 +159,7 @@ app.post("/register", urlencoder, (req, res)=>{
     
     let user = new User({
         username : username,
-        password: password,
+        password: encrypt(password),
         credit: 0
     })
     
