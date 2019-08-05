@@ -196,10 +196,11 @@ app.post("/edittask", urlencoder, (req,res)=>{
 
 app.post("/finish", urlencoder, (req,res)=>{
     console.log("completing task")
-    let id = req.body.id
+    let id = req.body.finishid
     let username = req.body.un
     let credit = req.body.credit
     let reward =req.body.reward
+    let img = req.body.img
     
     Task.updateOne({_id : id}, {isCompleted : true}, (err,doc)=>{
         if(err){
@@ -217,7 +218,7 @@ app.post("/finish", urlencoder, (req,res)=>{
                 else{
                     console.log("successfully rewarded")
                     console.log(doc)
-                    renderTasks(username, credit, res)
+                    renderTasks(username, credit, img, res)
                 }
             })
         }

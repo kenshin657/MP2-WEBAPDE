@@ -268,10 +268,11 @@
     
     <!--HIDDEN FORMS-->
     <form action="finish" method="post" id="finish">
-        <input type="hidden" id="finishid" name="id">
+        <input type="hidden" id="finishid" name="finishid">
         <input type="hidden" id="finishreward" name="reward">
         <input type="hidden" value="{{user}}" name="un">
         <input type="hidden" value="{{credit}}" name="credit">
+        <input type="hidden" value="{{image}}" name="img">
     </form>
 
     <form action="purchase" method="get" id="id">
@@ -348,6 +349,7 @@
                         </div>
                         <input type="hidden" name="un" value="{{user}}">
                         <input type="hidden" name="credit" value="{{credit}}">
+                        <input type="hidden" name="img" value="{{image}}">
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary btn-sm" id="newtasksubmitbutton">Submit</button>
                         </div>
