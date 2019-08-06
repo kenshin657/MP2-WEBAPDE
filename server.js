@@ -251,7 +251,7 @@ app.post("/finish", urlencoder, (req,res)=>{
 
 app.post("/purchase", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.s1
+    let image = req.body.img
     let credit = req.body.credit
 
     console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
@@ -272,7 +272,7 @@ app.post("/purchase", urlencoder, (req, res)=>{
 
 app.post("/purchase1", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.s1
+    let image = req.body.img
     let credit = req.body.credit
 
     console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")

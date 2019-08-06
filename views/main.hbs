@@ -185,9 +185,9 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
-                                <button class="delete" data-id="{{_id}}">Delete</button>
+                                <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
+                                <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
+                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -202,9 +202,9 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
-                                <button class="delete" data-id="{{_id}}">Delete</button>
+                                <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
+                                <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
+                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -219,9 +219,9 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
-                                <button class="delete" data-id="{{_id}}">Delete</button>
+                                <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
+                                <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
+                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -236,9 +236,9 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="finish" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
-                                <button class="delete" data-id="{{_id}}">Delete</button>
+                                <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
+                                <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
+                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                         <div id="{{_id}}Content" class="collapse">
                             {{taskDesc}}
                             <div>
-                                <button class="delete" data-id="{{_id}}">Delete</button>
+                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                                             <input type="submit" name="s1" id="item1" value="Purchase">
                                             <input type="hidden" name="un" value="{{user}}">
                                             <input type="hidden" name="credit" value="{{credit}}">
-                                            <input type="hidden" name="img" value="{{img}}">
+                                            <input type="hidden" name="img" value="/shop_item1.png">
                                         </form>
                                     </button>
                                     <figcaption>Cost: 100</figcaption>
@@ -307,10 +307,10 @@
                                     <button type="submit">
                                         <form action="purchase1" method="post">
                                             <img src="/shop_item2.png" alt="">
-                                            <input type="submit" value="s2" id="item2" value="Purchase">
+                                            <input type="submit" name="s2" id="item2" value="Purchase">
                                             <input type="hidden" name="un" value="{{user}}">
                                             <input type="hidden" name="credit" value="{{credit}}">
-                                            <input type="hidden" name="img" value="{{img}}">
+                                            <input type="hidden" name="img" value="/shop_item2.png">
                                         </form>
                                     </button>
                                     <figcaption>Cost: 100</figcaption>
