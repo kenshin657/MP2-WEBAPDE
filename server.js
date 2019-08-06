@@ -253,6 +253,17 @@ app.post("/purchase", urlencoder, (req, res)=>{
     let username = req.body.un
     let image = req.body.img
     let credit = req.body.credit
+    
+    credit = Number(credit)-100
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
 
     console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
 
@@ -274,6 +285,17 @@ app.post("/purchase1", urlencoder, (req, res)=>{
     let username = req.body.un
     let image = req.body.img
     let credit = req.body.credit
+    
+    credit = Number(credit)-100
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
 
     console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
 
