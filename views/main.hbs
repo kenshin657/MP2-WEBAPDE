@@ -35,12 +35,12 @@
         
         #profilediv{
             width: 100%;
-            height: 600px;
+            height: 200px;
             background-color: white;
 
             padding: 15px;
             border-radius: 5%;
-            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
         
         #content{
@@ -62,6 +62,8 @@
             margin: 10px;
             overflow-y: auto;
             overflow-x: hidden;
+
+            background-image: url(https://i.redd.it/wnk3xpjxqmxx.png)
         }
         #taskcontainer{
             width: 380px;
@@ -93,7 +95,6 @@
         #avatar{
             width: 100px;
             height: 100px;
-            display: inline-block;
         }
     </style>
     <script>
@@ -156,26 +157,29 @@
         <div id="sidebar">
         
             <div id="profilediv">
-                <div id="avatar">
+                <h3 style="display: inline">Adventurer's License</h3>
+                <br>
+                <span id="avatar">
                     <img src= "{{image}}">
                     <input type="hidden" name="img" value="{{image}}">
-                </div>
-                    <h3>Hello {{user}}!</h3>
-                    <div>Credit: {{credit}}</div>
+                </span>
+                    <!--<h3>Hello {{user}}!</h3>-->
+                    <h4 style="display: inline">Name: {{user}}</h4><br>
+                    <span style="float:right"><img src="favicon.png" alt=""><h3 style="display: inline">{{credit}}</h3></span>
                     <input type="hidden" name="credit" value="{{credit}}">
-                
+                <br><br><br><br><br>
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Shop</button> <br><br>
                 
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#taskModal">Add New Task</button> <br><br>
 
 
-                <a href="logout">Logout</a><br>
+                <a href="logout" class="btn btn-info btn-lg">Logout</a><br>
             </div>
             
         
         </div>
-        <div id="content" class="container">
-            <div class="row">
+        <div id="content" class="container" >
+            <div class="row" >
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Current Tasks</h2>
                     {{#each tasks}}
@@ -409,5 +413,16 @@
         </div>
         
     </div>
+
+    <!--LOADING ANIMATION-->
+  <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+    <script>
+        $(window).on("load", ()=>{
+            $(".loader-wrapper").fadeOut("slow");
+        })
+    </script>
 </body>
 </html>
