@@ -55,15 +55,15 @@
             position: relative;
             width: 420px;
             height:420px;
-            background-color: white;
-
+            
             padding: 15px;
             border-radius: 2%;
             margin: 10px;
             overflow-y: auto;
             overflow-x: hidden;
 
-            background-image: url(https://i.redd.it/wnk3xpjxqmxx.png)
+            background-image: url("asdasd.png");
+            background-repeat: no-repeat;
         }
         #taskcontainer{
             width: 380px;
@@ -319,7 +319,11 @@
                                     <figcaption>Cost: 100</figcaption>
                                     </figure>
                             </div>
-                            
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                <span style="float:right"><img src="favicon.png" alt=""><h3 style="display: inline">{{credit}}</h3></span>
+                                <input type="hidden" name="credit" value="{{credit}}">
+                             </div>
                             </div>
                         </div>
                     </div>
