@@ -65,16 +65,27 @@
             background-image: url("asdasd.png");
             background-repeat: no-repeat;
         }
-        #taskcontainer{
+        #taskcontainercomplete{
             width: 380px;
             min-height: 58px;
             border-radius: 2%;
-            background-color: rgba(222,222,222,1);
+            background-color: pink;
             margin: 10px;
             font-size: 20px;
         }
-        #taskcontainer:hover{
-            background-color: rgba(235,235,235,1);
+        #taskcontainerincomplete{
+            width: 380px;
+            min-height: 58px;
+            border-radius: 2%;
+            background-color: lawngreen;
+            margin: 10px;
+            font-size: 20px;
+        }
+        #taskcontainercomplete:hover{
+            background-color: red;
+        }
+        #taskcontainerincomplete:hover{
+            background-color: green;
         }
         #taskname{
             float: left;
@@ -181,26 +192,28 @@
         <div id="content" class="container" >
             <div class="row" >
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <h2>Current Tasks</h2>
-                    {{#each tasks}}
-                    <div id="taskcontainer" data-id="{{_id}}">
-                        <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
-                        <div id="reward">{{reward}}</div>
-                        <div id="{{_id}}Content" class="collapse">
-                            {{taskDesc}}
-                            <div>
-                                <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
-                                <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
-                                <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
+                    <div id="taskdivcontainer">
+                        <h2>Current Tasks</h2>
+                        {{#each tasks}}
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
+                            <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                            <div id="reward">{{reward}}</div>
+                            <div id="{{_id}}Content" class="collapse">
+                                {{taskDesc}}
+                                <div>
+                                    <button class="finish btn btn-info btn-md" data-id="{{_id}}" data-reward="{{reward}}">Finish</button>
+                                    <button class="edit btn btn-info btn-md" href="#editModal" data-toggle="modal" data-id="{{_id}}">Edit</button>
+                                    <button class="delete btn btn-info btn-md" data-id="{{_id}}">Delete</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {{/each}}
+                        {{/each}}
+                    </div>  
                 </div>
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Daily Tasks</h2>
                     {{#each daytasks}}
-                    <div id="taskcontainer" data-id="{{_id}}">
+                    <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
                         <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">
@@ -217,7 +230,7 @@
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Weekly Tasks</h2>
                     {{#each weektasks}}
-                    <div id="taskcontainer" data-id="{{_id}}">
+                    <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
                         <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">
@@ -234,7 +247,7 @@
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Monthly Tasks</h2>
                     {{#each monthtasks}}
-                    <div id="taskcontainer" data-id="{{_id}}">
+                    <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
                         <div id="taskname"><a href="#editmodal" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">
@@ -251,7 +264,7 @@
                 <div id="taskdiv" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <h2>Finished Tasks</h2>
                     {{#each finishedtasks}}
-                    <div id="taskcontainer" data-id="{{_id}}">
+                    <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
                         <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
                         <div id="reward">{{reward}}</div>
                         <div id="{{_id}}Content" class="collapse">

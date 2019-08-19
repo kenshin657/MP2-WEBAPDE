@@ -109,7 +109,7 @@ app.post("/register", urlencoder, (req, res)=>{
             taskDesc: "create your first task",
             reward: 100,
             frequency: 0,
-            isCompleted: false,
+            isComplete: "incomplete",
         })
         
         task1.save().then((doc2)=>{
@@ -121,7 +121,7 @@ app.post("/register", urlencoder, (req, res)=>{
                 taskDesc: "explore the website",
                 reward: 100,
                 frequency: 0,
-                isCompleted: false,
+                isComplete: "incomplete",
             })
 
             task2.save().then((doc3)=>{
@@ -176,7 +176,7 @@ app.post("/newtask", urlencoder, (req,res)=>{
         taskDesc: taskDesc,
         reward: reward,
         frequency: frequency,
-        isCompleted: false,
+        isComplete: "incomplete",
     })
 
     task.save().then((doc)=>{
@@ -225,7 +225,7 @@ app.post("/finish", urlencoder, (req,res)=>{
     let reward =req.body.reward
     let img = req.body.img
     
-    Task.updateOne({_id : id}, {isCompleted : true}, (err,doc)=>{
+    Task.updateOne({_id : id}, {isComplete : "complete"}, (err,doc)=>{
         if(err){
             
         }
@@ -332,7 +332,7 @@ function renderTasks(username, credit, image, res){
     var finishedtasks
     
     setTimeout(function(){
-        Task.find({username: username, frequency: 0, isCompleted:false}, function(err, docs){
+        Task.find({username: username, frequency: 0, isComplete:"incomplete"}, function(err, docs){
             if(err){
                 res.send(err)
             }
@@ -372,7 +372,7 @@ function renderTasks(username, credit, image, res){
             }
         })
 
-        Task.find({username: username, frequency: 0, isCompleted:true}, function(err, docs){
+        Task.find({username: username, frequency: 0, isComplete:"complete"}, function(err, docs){
             if(err){
                 res.send(err)
             }

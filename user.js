@@ -13,7 +13,8 @@ var taskSchema = mongoose.Schema({
     taskDesc : String,
     reward : Number,
     frequency : Number, //0 = one time, 1 = daily, 2 = weekly, 3 = monthly
-    isCompleted : Boolean
+    isComplete : String,
+    lastCompleted : Date
 })
 
 var User = mongoose.model("User", userSchema)
