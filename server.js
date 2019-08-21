@@ -251,10 +251,17 @@ app.post("/finish", urlencoder, (req,res)=>{
 
 app.post("/purchase", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
+    var image = req.body.imgO
+
+    if(credit < 100) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
     credit = Number(credit)-100
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -277,16 +284,23 @@ app.post("/purchase", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
-    
-    
+
+    }
 })
 
 app.post("/purchase1", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
+    var image = req.body.imgO
+
+    if(credit < 100) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
     credit = Number(credit)-100
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -309,15 +323,24 @@ app.post("/purchase1", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 
 app.post("/purchase2", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 100) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-100
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -340,13 +363,22 @@ app.post("/purchase2", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 app.post("/purchase3", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 100) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-100
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -369,13 +401,22 @@ app.post("/purchase3", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 app.post("/purchase4", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 100) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-100
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -398,13 +439,22 @@ app.post("/purchase4", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 app.post("/purchase5", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 180) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-180
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -427,14 +477,23 @@ app.post("/purchase5", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 app.post("/purchase6", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 180) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-180
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -457,14 +516,23 @@ app.post("/purchase6", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 app.post("/purchase7", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 180) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-180
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -487,14 +555,23 @@ app.post("/purchase7", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 app.post("/purchase8", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
-    credit = Number(credit)-150
+    var image = req.body.imgO
+
+    if(credit < 200) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
+    credit = Number(credit)-200
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -517,14 +594,23 @@ app.post("/purchase8", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 app.post("/purchase9", urlencoder, (req, res)=>{
     let username = req.body.un
-    let image = req.body.img
     let credit = req.body.credit
-    
+    var image = req.body.imgO
+
+    if(credit < 150) {
+        renderTasks(username, credit, image, res)
+    }
+
+    else{
+    image = req.body.img
     credit = Number(credit)-150
+
     
     User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
         if(err){
@@ -547,6 +633,8 @@ app.post("/purchase9", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+
+    }
 })
 
 app.get("/logout", (req,res)=>{
