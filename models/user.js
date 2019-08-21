@@ -4,7 +4,8 @@ var userSchema = mongoose.Schema({
     username : String,
     password : String,
     credit: Number,
-    image : String
+    image : String,
+    register : Date
 })
 
 var taskSchema = mongoose.Schema({
