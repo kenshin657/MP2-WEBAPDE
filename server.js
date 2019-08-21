@@ -74,7 +74,9 @@ app.post("/login", urlencoder, (req, res)=>{
         
         if(doc && password == decrypt(doc.password)){
             console.log(doc.username + " in database!")
-            
+            //updateDaily()
+            //updateWeekly()
+            //updateMonthly()
             renderTasks(doc.username, doc.credit, doc.image,res)
             /*res.render("main.hbs", {
                 username: doc.username
@@ -651,6 +653,39 @@ app.get("/logout", (req,res)=>{
 app.listen(process.env.PORT || 5000, ()=> {
     console.log("Webpage is Up at port 5000!")
 })
+
+function updateDaily(){
+    Task.updateMany({frequency: 1}, {isComplete:"incomplete"},function(err, docs){
+        if(err){
+            res.send(err)
+        }
+         else{
+            console.log("reset daily")
+        }
+    })
+}
+
+function updateWeekly(){
+    Task.updateMany({frequency: 2}, {isComplete:"incomplete"},function(err, docs){
+        if(err){
+            res.send(err)
+        }
+         else{
+            console.log("reset weekly")
+        }
+    })
+}
+
+function updateMonthly(){
+    Task.updateMany({frequency: 3}, {isComplete:"incomplete"},function(err, docs){
+        if(err){
+            res.send(err)
+        }
+         else{
+            console.log("reset monthly")
+        }
+    })
+}
 
 function renderTasks(username, credit, image, res){
     var tasks
