@@ -29,8 +29,8 @@ const password = 'd6UwUEfeqpopo42069'
 
 
 app.use(express.static(__dirname+ "/public"))
-const User = require("./user.js").User
-const Task = require("./user.js").Task
+const User = require("./models/user.js").User
+const Task = require("./models/user.js").Task
 
 function encrypt(text) {
     var cypher = crypto.createCipher(algorithim, password)
