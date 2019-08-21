@@ -68,7 +68,7 @@
         #taskdivcontainer{
             width: 300px;
             height: 300px;
-            margin : 40px;
+            margin : 35px;
             padding: 0px;
             
             overflow-y: auto;
@@ -79,24 +79,27 @@
             width: 270px;
             min-height: 50px;
             border-radius: 2%;
-            background-color: pink;
-            margin: 10px;
+            background-color: rgba(85,255,0,0.3);
+            margin: 0px;
+            margin-top: 10px;
             font-size: 20px;
         }
         #taskcontainerincomplete{
             width: 270px;
             min-height: 50px;
             border-radius: 2%;
-            background-color: lawngreen;
+            background-color: rgba(0,0,0,0.05);
             margin : 0px;
             margin-top: 10px;
             font-size: 20px;
         }
         #taskcontainercomplete:hover{
-            background-color: red;
+            background-color: rgba(85,255,0,0.6);
+            cursor: pointer;
         }
         #taskcontainerincomplete:hover{
-            background-color: green;
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
         }
         #taskname{
             float: left;
@@ -206,8 +209,8 @@
                     <div id="taskdivcontainer">
                         <h2>Current Tasks</h2>
                         {{#each tasks}}
-                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
-                            <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}" href="#{{_id}}Content" data-toggle="collapse">
+                            <div id="taskname">{{taskName}}</div>
                             <div id="reward">{{reward}}</div>
                             <div id="{{_id}}Content" class="collapse">
                                 {{taskDesc}}
@@ -225,8 +228,8 @@
                     <div id="taskdivcontainer">
                         <h2>Daily Tasks</h2>
                         {{#each daytasks}}
-                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
-                            <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}" href="#{{_id}}Content" data-toggle="collapse">
+                            <div id="taskname">{{taskName}}</div>
                             <div id="reward">{{reward}}</div>
                             <div id="{{_id}}Content" class="collapse">
                                 {{taskDesc}}
@@ -244,8 +247,8 @@
                     <div id="taskdivcontainer">
                     <h2>Weekly Tasks</h2>
                         {{#each weektasks}}
-                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
-                            <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}" href="#{{_id}}Content" data-toggle="collapse">
+                            <div id="taskname">{{taskName}}</div>
                             <div id="reward">{{reward}}</div>
                             <div id="{{_id}}Content" class="collapse">
                                 {{taskDesc}}
@@ -263,8 +266,8 @@
                     <div id="taskdivcontainer">
                         <h2>Monthly Tasks</h2>
                         {{#each monthtasks}}
-                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
-                            <div id="taskname"><a href="#editmodal" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}" href="#{{_id}}Content" data-toggle="collapse">
+                            <div id="taskname">{{taskName}}</div>
                             <div id="reward">{{reward}}</div>
                             <div id="{{_id}}Content" class="collapse">
                                 {{taskDesc}}
@@ -282,8 +285,8 @@
                     <div id="taskdivcontainer">
                         <h2>Finished Tasks</h2>
                         {{#each finishedtasks}}
-                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}">
-                            <div id="taskname"><a href="#{{_id}}Content" data-toggle="collapse">{{taskName}}</a></div>
+                        <div id="taskcontainer{{isComplete}}" data-id="{{_id}}" href="#{{_id}}Content" data-toggle="collapse">
+                            <div id="taskname">{{taskName}}</div>
                             <div id="reward">{{reward}}</div>
                             <div id="{{_id}}Content" class="collapse">
                                 {{taskDesc}}
