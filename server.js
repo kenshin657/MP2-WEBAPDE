@@ -224,8 +224,12 @@ app.post("/finish", urlencoder, (req,res)=>{
     let credit = req.body.credit
     let reward =req.body.reward
     let img = req.body.img
+    let finishdate = Date.now()
     
-    Task.updateOne({_id : id}, {isComplete : "complete"}, (err,doc)=>{
+    Task.updateOne({_id : id}, {
+        isComplete : "complete",
+        lastCompleted : finishdate
+    }, (err,doc)=>{
         if(err){
             
         }
