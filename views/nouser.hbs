@@ -16,6 +16,9 @@
 <body>
 
     <div class="all">
+      <div class="logo">
+                    <img src="/Main Logo.png" alt="">
+                </div>
         <form action="login" method="post">
             <div class="form-group">
                 <label for="form-groupUsername">Username</label>
@@ -26,11 +29,56 @@
                 <input type="password" name="pw" id="form-groupPass" class="form-control" placeholder="Password">
                 <small id="loginHelp" class="form-text text-muted" style="color: red; font-weight: bold">Invalid Login Credentials</small>
             </div>
-
-            <br>
-            <button type="submit" class="btn btn-primary btn-sm">Login</button>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Register</button>
+            <button type="submit" id="loginBtn" class="btn btn-primary btn-sm">Login</button>
+            <button type="button" id="registerBtn" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Register</button>
         </form>
+    </div>
+
+    <div class="about">
+        <button type="button" class="btn btn-info btn-lg" data-target="#aboutus" data-toggle="modal">ABOUT US</button>
+    </div>
+
+    <div class="modal fade" id="aboutus" role="dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About Us</h4>
+              </div>
+              <div class="modal-body">
+                  <p style="text-align: left">
+                      Good day!,
+                      <br>
+                      We are a group students from De La Salle Univeristy <br>
+                      in the Computer Science track. We were tasked to make <br>
+                      a Web Application and created PixQuest. PixQuest is an <br>
+                      a To-Do-List, but with rewards. <br>
+                      <br>
+                      Package used 
+                      "body-parser": "^1.19.0",
+                    "cookie-parser": "^1.4.4",
+                        "crypto": "^1.0.1",
+                        "express": "^4.17.1",
+                        "express-session": "^1.16.2",
+                        "hbs": "^4.0.4",
+                        "mongodb": "^3.3.0-beta2",
+                        "mongoose": "^5.6.7",
+                        "url": "^0.11.0"
+                  </p>
+
+                  <p style="text-align: right">
+                    Developers <br>
+                    Santiago Alvarez <br>
+                    Lorenzo Avancena <br>
+                    Kyle Tagle
+                  </p>
+              </div>
+              
+            </div>
+            
+          </div>
     </div>
 
     <!--MODAL CONTENT STUFF FOR REGISTER-->
