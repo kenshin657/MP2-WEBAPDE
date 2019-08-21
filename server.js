@@ -309,8 +309,244 @@ app.post("/purchase1", urlencoder, (req, res)=>{
             renderTasks(username, credit, image, res)
         }
     })
+})
+
+
+app.post("/purchase2", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
     
+    credit = Number(credit)-150
     
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+app.post("/purchase3", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+app.post("/purchase4", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+app.post("/purchase5", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+
+app.post("/purchase6", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+
+app.post("/purchase7", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+
+app.post("/purchase8", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
+})
+
+app.post("/purchase9", urlencoder, (req, res)=>{
+    let username = req.body.un
+    let image = req.body.img
+    let credit = req.body.credit
+    
+    credit = Number(credit)-150
+    
+    User.updateOne({username: username}, {credit: Number(credit)}, (err,doc)=>{
+        if(err){
+
+        }
+        else{
+            console.log("successfully bought")
+        }
+    })
+
+    console.log("Username: " +username + "Credit: " +credit + "LOGGING TEST")
+
+    User.updateOne({username: username}, {image: image}, (err, doc)=>{
+        if(err) {
+
+        }
+        else{
+            console.log("Image should be changed")
+            console.log(doc)
+            renderTasks(username, credit, image, res)
+        }
+    })
 })
 
 app.get("/logout", (req,res)=>{
