@@ -14,6 +14,12 @@
     border-radius: 2%;
 }
 
+.about{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
 body{
     background-image: url(https://images2.alphacoders.com/705/705837.png);
     -webkit-background-size: cover;
