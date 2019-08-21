@@ -619,12 +619,25 @@ router.post("/purchase9", urlencoder, (req, res)=>{
     }
 })
 
-router.get("/logout", (req,res)=>{
+/*router.get("/logout", (req,res)=>{
     req.session.destroy((err)=>{
         console.log("Error in Logging Out")
     })
     res.redirect("/")
-})
+})*/
+
+router.get('/logout', function(req, res, next) {
+    if (req.session) {
+      // delete session object
+      req.session.destroy(function(err) {
+        if(err) {
+          return next(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
+  });
 
 function renderTasks(username, credit, image, res){
     var tasks
