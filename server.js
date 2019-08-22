@@ -126,6 +126,7 @@ app.post("/register", urlencoder, (req, res)=>{
         
         if(doc){
           res.render("nouser.hbs")  
+          return
         }
         else{
             console.log("user not found")
