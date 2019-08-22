@@ -59,6 +59,11 @@ app.use(session({
 app.get("/", (req, res)=> {
     //req = what the user sent us
     //res = what we send to the user
+
+    if(req.cookies.user) {
+        //renderTasks(req.cookies.user, req.cookies.credit, req.cookies.img, res)
+        console.log("Cookies Work , but not w/ renderTasks")
+    }
     
     res.sendFile(__dirname + "/login.html")
 })
@@ -77,6 +82,19 @@ app.post("/login", urlencoder, (req, res)=>{
             //updateDaily()
             //updateWeekly()
             //updateMonthly()
+
+            res.cookie("user", doc.username, {
+                maxAge: 5 *60 * 1000
+            })
+
+            res.cookie("credit", doc.credit, {
+                maxAge: 5 * 60 * 1000
+            })
+
+            res.cookie("img", doc.image,  {
+                maxAge: 5 * 60 * 1000
+            })
+
             renderTasks(doc.username, doc.credit, doc.image,res)
             /*res.render("main.hbs", {
                 username: doc.username
@@ -99,6 +117,19 @@ app.post("/register", urlencoder, (req, res)=>{
         password: encrypt(password),
         credit: 50,
         image: "/base_avatar.png"
+    })
+
+    User.findOne({username:username}, function(err, doc){
+        if(err){
+            console.log(err)
+        }
+        
+        if(doc){
+          res.render("nouser.hbs")  
+        }
+        else{
+            console.log("user not found")
+        }
     })
     
     user.save().then((doc)=>{
@@ -645,6 +676,10 @@ app.post("/purchase9", urlencoder, (req, res)=>{
 
 app.get("/logout", (req,res)=>{
     req.session.destroy((err)=>{
+        //res.clearCookie('cookieMonster')
+        //res.clearCookie('credit')
+        //res.clearCookie('img')
+        //res.clearCookie('user')
         console.log("Error in Logging Out")
     })
     res.redirect("/")
