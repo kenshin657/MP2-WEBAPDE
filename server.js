@@ -794,6 +794,6 @@ function renderTasks(username, credit, image, res){
                 monthtasks: monthtasks,
                 finishedtasks: finishedtasks
             })
-        }, 500)
-    },500)
+        }, 1000)
+    },1000)
 }
