@@ -126,55 +126,55 @@ app.post("/register", urlencoder, (req, res)=>{
         
         if(doc){
           res.render("nouser.hbs")  
-          return
         }
         else{
             console.log("user not found")
-        }
-    })
-    
-    user.save().then((doc)=>{
-        console.log(doc)
-        req.session.username = doc.username
+            user.save().then((doc)=>{
+                console.log(doc)
+                req.session.username = doc.username
+                
+                var task1 = new Task({
+                    username: username,
+                    taskName: "Getting Started P1",
+                    taskDesc: "create your first task",
+                    reward: 100,
+                    frequency: 0,
+                    isComplete: "incomplete",
+                })
+                
+                task1.save().then((doc2)=>{
+                    console.log(doc2)
+                    
+                    var task2 = new Task({
+                        username: username,
+                        taskName: "Getting Started P2",
+                        taskDesc: "explore the website",
+                        reward: 100,
+                        frequency: 0,
+                        isComplete: "incomplete",
+                    })
         
-        var task1 = new Task({
-            username: username,
-            taskName: "Getting Started P1",
-            taskDesc: "create your first task",
-            reward: 100,
-            frequency: 0,
-            isComplete: "incomplete",
-        })
+                    task2.save().then((doc3)=>{
+                        console.log(doc3)
         
-        task1.save().then((doc2)=>{
-            console.log(doc2)
-            
-            var task2 = new Task({
-                username: username,
-                taskName: "Getting Started P2",
-                taskDesc: "explore the website",
-                reward: 100,
-                frequency: 0,
-                isComplete: "incomplete",
-            })
-
-            task2.save().then((doc3)=>{
-                console.log(doc3)
-
-                renderTasks(doc.username, doc.credit, doc.image,res)
+                        renderTasks(doc.username, doc.credit, doc.image,res)
+                        
+                    }, (err)=>{
+                        res.send(err)
+                    })
+                    
+                }, (err)=>{
+                    res.send(err)
+                })
+                
                 
             }, (err)=>{
                 res.send(err)
             })
-            
-        }, (err)=>{
-            res.send(err)
-        })
-        
-        
-    }, (err)=>{
-        res.send(err)
+        }
     })
+    
+    
 })
 
 app.post("/delete",urlencoder, (req,res)=>{
